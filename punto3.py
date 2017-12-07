@@ -51,7 +51,7 @@ def calcularGanador(tupla):
     lista = segundoEmpaque(primerempaque(tupla))
     if siSonIguales(lista) == True:
 
-        return soloNombres(lista)
+        return soloNombres(tupla)
 
     resul = 0
     for x in range(len(lista)):
