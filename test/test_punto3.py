@@ -3,7 +3,8 @@ import unittest
 
 class punto3Test(unittest.TestCase):
 
-    def testCalculandoGanador1(self):
+    def testRecibeUnPartidoAnuladoYNoRetornaNigunGanador(self):
+
         # ARRANGE
         tupla = []
 
@@ -13,19 +14,47 @@ class punto3Test(unittest.TestCase):
         # ASSERT
         self.assertEqual(Resultado, "")
 
-    def testCalculandoGanador2(self):
+    def testRecibeUnPartidoYRetornaElGanadorDelPartido(self):
 
-        self.assertEqual(punto3.calcularGanador([("a", 1, "b", 0)]), "a")
+        # ARRANGE
+        tupla = [("a", 1, "b", 0)]
 
-    def testCalculandoGanador3(self):
+        # ACT
+        Resultado = punto3.calcularGanador(tupla)
 
-        self.assertEqual(punto3.calcularGanador([("a", 1, "b", 0), ("a", 1, "c", 2), ("c", 3, "b", 0)]), "c")
+        # ASSERT
+        self.assertEqual(Resultado, "a")
 
-    def testCalculandoGanador4(self):
+    def testRecibeTresPartidosYRetornaElEquipoConMasGoles(self):
 
-        self.assertEqual(punto3.calcularGanador([("Boca", 1, "Belgrano", 1), ("Boca", 1, "Almagro", 1), ("Almagro", 1, "Belgrano", 1)]), "Almagro")
+        # ARRANGE
+        tupla = [("a", 1, "b", 0), ("a", 1, "c", 2), ("c", 3, "b", 0)]
 
-    def testCalculandoGanador(self):
+        # ACT
+        Resultado = punto3.calcularGanador(tupla)
 
-        self.assertEqual(punto3.calcularGanador([("a", 1, "b", -2), ("a", 1, "c", 1), ("c", 1, "b", 1), ("d", 1, "a", 9)]), "a")
+        # ASSERT
+        self.assertEqual(Resultado, "c")
+
+    def testRecibeTresPartidosYRetornaElEquipoQueJugoMasPartidos(self):
+
+        # ARRANGE
+        tupla = [("Boca", 1, "Belgrano", 1), ("Boca", 1, "Almagro", 1), ("Almagro", 1, "Belgrano", 1)]
+
+        # ACT
+        Resultado = punto3.calcularGanador(tupla)
+
+        # ASSERT
+        self.assertEqual(Resultado, "Almagro")
+
+
+    def testRecibeCuatroPartidosYRetornaElEquipoQueTieneMasGolesYQueJugoMasPartidos(self):
+        # ARRANGE
+        tupla = [("a", 1, "b", -2), ("a", 1, "c", 1), ("c", 1, "b", 1), ("d", 1, "a", 9)]
+
+        # ACT
+        Resultado = punto3.calcularGanador(tupla)
+
+        # ASSERT
+        self.assertEqual(Resultado, "a")
 

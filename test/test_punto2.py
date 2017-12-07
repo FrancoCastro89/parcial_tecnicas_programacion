@@ -1,37 +1,102 @@
-import punto1
+import punto2
 import unittest
 
 
-class Punto1Test(unittest.TestCase):
+class Punto2Test(unittest.TestCase):
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaVacia(self):
-        # ARRANGE
-        palabra = ""
-        # ACT
-        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
-        # ASSERT
+    def testJuegoRecibeMapaVacioyPuntosDeDisparosRetornaUnaListaVacia(self):
+
+        #ARRANGE
+        mapa = []
+        posicionesDeDisparosDePrueba = [(1,1),(3,4),(1,3),(4,5)]
+
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparosDePrueba)
+
+        #ASSERT
         self.assertEqual(resultado, [])
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaVacia(self):
+    def testJuegoRecibeunMapaVacioyListaConDisparosyRetornaUnaListavacia(self):
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("     "), [])
+        #ARRANGE
+        mapa = [""]
+        posicionesDeDisparosDePrueba = [(1, 1), (3, 4), (1, 3), (4, 5)]
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeA(self):
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparosDePrueba)
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("a"), ['a'])
+        #ASSERT
+        self.assertEqual(resultado, [])
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeAyB(self):
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("ab"), ['ab','ba'])
+    def testJuegoMapaEnBlancoYListaConDisparosYRetornaListaVacia(self):
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDePaz(self):
+        #ARRANGE
+        mapa = ["      "]
+        posicionesDeDisparosDePrueba = [(1, 1), (3, 4), (1, 3), (4, 5)]
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("paz"), ['paz','azp','zpa'])
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparosDePrueba)
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeSo_l(self):
+        #ASSERT
+        self.assertEqual(resultado, [])
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("so l"), ['so l','o ls',' lso','lso '])
+    def testJuegoRecibeUnMapaDeTresPalabrasyPuntosDeDisparosYRetornaUnaLista(self):
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeRotar(self):
+        #ARRANGE
+        mapa = ["soy NO valido"]
+        posicionesDeDisparosDePrueba = [ (1, 1), (3, 4), (1, 3), (4, 5)]
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("rotar"), ['rotar','otarr','tarro','arrot','rrota'])
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparosDePrueba)
+
+        #ASSERT
+        self.assertEqual(resultado, [])
+
+    def testJuegoRecibeMapaDePalabrasYPosicionesDeDisparosReltornaUnaListaVacia(self):
+
+        #ARRANGE
+        mapa = ["yo", "tambien", "soy", "invalido"]
+        posicionesDeDisparoDePrueba = [(1, 1), (3, 4), (1, 3), (4, 5)]
+
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparoDePrueba)
+
+        #ASSERT
+        self.assertEqual(resultado, [])
+
+    def testJuegoMapaDeLasPosicionesdeLosBarcosYPosicionesDeDisparodePuebaRetornaUnaListaVacia(self):
+
+        #ARRANGE
+        mapa = ["b.b.","....","..bb","b.b"]
+        posicinesDeDisparoDePrueba = [(1, 1), (3, 4), (1, 3), (4, 5)]
+
+        #ACT
+        resultado = punto2.juego(mapa, posicinesDeDisparoDePrueba)
+
+
+        #ASSERT
+        self.assertEqual(resultado, [])
+
+    def testJuegoMapaDeLasPosicioensDeLosBarcosyPuntosDeDisparoRetornaLaPosicionesdeLosBarcosVivos(self):
+
+        #ARRANGE
+        mapa = ["b.b..","b...b",".....","....b"]
+        posicionesDeDisparoDePrueba = [(1,1),(3,4),(1,3),(4,5)]
+
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparoDePrueba)
+
+        #ASSERT
+        self.assertEqual(resultado, [(2,1),(2,5)])
+
+    def testJuegoMapaDeBarcosypuntoDeDisparoRetornalaPosiciondeLosvarcosVivos(self):
+
+        #ARRANGE
+        mapa = ["b..","...","..b"]
+        posicionesDeDisparoDePrueba = []
+
+        #ACT
+        resultado = punto2.juego(mapa, posicionesDeDisparoDePrueba)
+        #ASSERT
+        self.assertEqual(resultado, [(1,1),(3,3)])

@@ -4,7 +4,8 @@ import unittest
 
 class Punto1Test(unittest.TestCase):
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaVacia(self):
+    def testNoRecibeNingunaLetraYRetornaUnaListaVacia(self):
+
         # ARRANGE
         palabra = ""
         # ACT
@@ -12,26 +13,59 @@ class Punto1Test(unittest.TestCase):
         # ASSERT
         self.assertEqual(resultado, [])
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaVacia(self):
+    def testRecibeEspacioEnBlancoYRetornaUnalistaVacia(self):
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("     "), [])
+        # ARRANGE
+        palabra = "     "
+        # ACT
+        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
+        # ASSERT
+        self.assertEqual(resultado, [])
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeA(self):
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("a"), ['a'])
+    def testRecibeUnaLetraYRetornaLaListaDeEsaLetra(self):
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeAyB(self):
+        # ARRANGE
+        palabra = "a"
+        # ACT
+        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
+        # ASSERT
+        self.assertEqual(resultado, ['a'])
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("ab"), ['ab','ba'])
+    def testRecibeDosletrasYRetornaUnaListaDeLasRotacionesDeEsasLetras(self):
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDePaz(self):
+        # ARRANGE
+        palabra = "ab"
+        # ACT
+        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
+        # ASSERT
+        self.assertEqual(resultado, ['ab', 'ba'])
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("paz"), ['paz','azp','zpa'])
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeSo_l(self):
+    def testRecibeUnaPalabraYRetornaUnaListaDeSusPosiblesRotaciones(self):
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("so l"), ['so l','o ls',' lso','lso '])
+        # ARRANGE
+        palabra = "paz"
+        # ACT
+        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
+        # ASSERT
+        self.assertEqual(resultado, ['paz', 'azp', 'zpa'])
 
-    def testdevuelveUnaLisDeTodasLasRotacionesPosiblesRecibeUnElementoNoValidoDeberiavolverUnalistaDeRotar(self):
 
-        self.assertEqual(punto1.devuelveUnaLisDeTodasLasRotacionesPosibles("rotar"), ['rotar','otarr','tarro','arrot','rrota'])
+    def testRecibeDosLetrasUnEspacioYUnaLetraRetornaListaConLasRotaciones(self):
+
+        # ARRANGE
+        palabra = "so l"
+        # ACT
+        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
+        # ASSERT
+        self.assertEqual(resultado, ['so l','o ls',' lso','lso '])
+
+    def testRecibeUnaPalabraYRetornaUnaListaDeSusRotaciones(self):
+
+        # ARRANGE
+        palabra = "rotar"
+        # ACT
+        resultado = punto1.devuelveUnaLisDeTodasLasRotacionesPosibles(palabra)
+        # ASSERT
+        self.assertEqual(resultado, ['rotar','otarr','tarro','arrot','rrota'])
